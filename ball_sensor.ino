@@ -4,7 +4,7 @@
 MovingAverage smaForRadius(20);
 MovingAverage smaForTheta(20);
 
-unsigned long time_ms = 0;
+static unsigned long time_ms = 0;
 
 void setup() {
 // put your setup code here, to run once:
@@ -32,7 +32,7 @@ void loop() {
 	// 50ms周期でシリアルプリント
 	if (millis() - time_ms > 50) {
 		time_ms = millis();
-
+		
 		serialPrintAllPusleWidth(pulseWidth, activeSensors, maxSensorNumber, maxPulseWidth);
 		Serial.print("\t");
 		serialPrintVectorXY(&vectorXY);
@@ -41,7 +41,7 @@ void loop() {
 		Serial.print("\t");
 		Serial.print(millis());
 		Serial.print("\n");
-	}
+		}
 }
 
 void serialPrintAllPusleWidth(float *pulseWidth, uint8_t activeSensors, uint8_t maxSensorNumber, uint16_t maxPulseWidth) {
