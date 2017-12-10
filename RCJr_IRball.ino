@@ -1,27 +1,29 @@
 #include "sensor_control.h"
 #include "moving_average.h"
 
+// RoboCupJunior IR Ball waveform MODE-A T=833[us]
+// https://www.elekit.co.jp/pdf/RCJ-05%20waveform_j.pdf
+#define T_MODEA 833
+
 MovingAverage smaForRadius(20);
 MovingAverage smaForTheta(20);
 
 unsigned long time_ms = 0;
 
 void setup() {
-// put your setup code here, to run once:
 	Serial.begin(115200);
 	setAllSensorPinsInput();
 }
 
 void loop() {
-// put your main code here, to run repeatedly:
-	uint8_t 		activeSensors;
-	uint16_t 		maxPulseWidth;
-	uint8_t 		maxSensorNumber;
-	float 			pulseWidth[IR_NUM];
-	vectorXY_t 	vectorXY;
-	vectorRT_t	vectorRT;
+	uint8_t 		activeSensors;			// 反応したセンサの個数
+	uint16_t 		maxPulseWidth;			// 最大のセンサ値
+	uint8_t 		maxSensorNumber;		// 最大の値を観測したセンサの番号
+	float 			pulseWidth[IR_NUM];	// パルス幅を格納する変数
+	vectorXY_t 	vectorXY;						// 直交座標系のベクトル構造体
+	vectorRT_t	vectorRT;						// 極座標系のベクトル構造体
 
-	getAllSensorPulseWidth(&activeSensors, &maxPulseWidth, &maxSensorNumber, pulseWidth, 833);
+	getAllSensorPulseWidth(&activeSensors, &maxPulseWidth, &maxSensorNumber, pulseWidth, T_MODEA);
 	vectorXY = calcVectorXYFromPulseWidth(pulseWidth);
 	vectorRT = calcRTfromXY(&vectorXY);
 

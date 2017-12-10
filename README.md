@@ -1,1 +1,3 @@
 # RCJr_IRball
+
+RoboCupJuniorサッカーリーグ公式のパルス赤外線ボールのセンサープログラムです。

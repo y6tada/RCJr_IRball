@@ -6,6 +6,11 @@ void setAllSensorPinsInput(void) {
 	}
 }
 
+/*
+ デジタル読み込みの高速化のためのポート操作
+ 詳しくは以下を参照
+ http://www.musashinodenpa.com/arduino/ref/index.php?f=0&pos=849
+ */
 bool getSensorPin(uint8_t pin) {
 	switch(pin) {
 		case 0:   return PINB&(1<<2);
@@ -39,6 +44,7 @@ void getAllSensorPulseWidth(uint8_t *activeSensors_p, uint16_t *maxPulseWidth_p,
 		}
 	} while((micros() - startTime_us) < timeLimit);
 
+	// ベクトル計算のみでセンシングを行うのであれば以下の実装は不要
 	*activeSensors_p 		= 0;	// ボールに反応しているセンサの個数
 	*maxPulseWidth_p 		= 0;	// 一番反応の強いセンサのパルス幅
 	*maxSensorNumber_p 	= 0;	// 一番反応の強いセンサの番号
