@@ -4,11 +4,11 @@
 MovingAverage smaForRadius(20);
 MovingAverage smaForTheta(20);
 
-static unsigned long time_ms = 0;
+unsigned long time_ms = 0;
 
 void setup() {
 // put your setup code here, to run once:
-	Serial.begin(500000);
+	Serial.begin(115200);
 	setAllSensorPinsInput();
 }
 
@@ -41,7 +41,7 @@ void loop() {
 		Serial.print("\t");
 		Serial.print(millis());
 		Serial.print("\n");
-		}
+	}
 }
 
 void serialPrintAllPusleWidth(float *pulseWidth, uint8_t activeSensors, uint8_t maxSensorNumber, uint16_t maxPulseWidth) {

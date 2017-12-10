@@ -70,4 +70,3 @@ vectorRT_t calcRTfromXY(vectorXY_t *vectorXY_p) {
 
 	return rslt;
 }
-
