@@ -10,6 +10,8 @@ void setAllSensorPinsInput(void) {
  デジタル読み込みの高速化のためのポート操作
  詳しくは以下を参照
  http://www.musashinodenpa.com/arduino/ref/index.php?f=0&pos=849
+
+ digitalRead()で一般化されていないため、ハードウェア依存の実装
  */
 bool getSensorPin(uint8_t pin) {
     switch(pin) {
