@@ -1,5 +1,5 @@
 #ifndef __MOVING_AVERAGE__
-#define __MOVING_AVERAGE__ value
+#define __MOVING_AVERAGE__
 
 class MovingAverage {
 private:
